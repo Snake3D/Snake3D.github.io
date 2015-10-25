@@ -36,12 +36,12 @@ function update(snake_name){
         scene.add(snake_name.blocks[snake_name.length-1]);
     }
     else {
-        snake_name.length += 1;
         snake_name.blocks.push(new THREE.Mesh( geometry, material ));
         snake_name.blocks[snake_name.length].position.x = player.body[snake_name.length].x;
         snake_name.blocks[snake_name.length].position.y = player.body[snake_name.length].y;
         snake_name.blocks[snake_name.length].position.z = player.body[snake_name.length].z;
         scene.add(snake_name.blocks[snake_name.length]);
+        snake_name.length += 1;
         food = true;
     }
     //console.log("x:" + snake_name.body[0].x + "   y:" + snake_name.body[0].y + "  z:" + snake_name.body[0].z + "   direction:" + snake_name.direction + "   orientation:" + snake_name.orientation);
