@@ -9,11 +9,26 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
           
-var geometry = new THREE.BoxGeometry( .8, .8, .8 );
+//var geometry = new THREE.BoxGeometry( .8, .8, .8 );
 var pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(0, 300, 200);
-var material = new THREE.MeshBasicMaterial( {color: 0x00ff00});
-var material2 = new THREE.MeshBasicMaterial( {color: 0xff0000});
+
+/*for ( var i = 0; i < geometry.faces.length; i ++ ) {
+    geometry.faces[ i ].color.setHex(0x00ff00);
+    geometry.colorsNeedUpdate = true;
+}
+geometry.faces[0].color.setHex(0xff0000);
+geometry.colorsNeedUpdate = true;*/
+var geometry = new THREE.BoxGeometry( .8, .8, .8);
+for ( var i = 0; i < geometry.faces.length; i ++ ) {
+    geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
+}
+
+
+
+
+var material = new THREE.MeshBasicMaterial( {color: 0x00ff00, vertexColors: THREE.FaceColors});
+var material2 = new THREE.MeshBasicMaterial( {color: 0xff0000, vertexColors: THREE.FaceColors});
 var scale = 10;
 var a = 1*scale;
 var b = 1*scale;
@@ -121,6 +136,7 @@ function update(snake_name){
         scene.add(snake_name.blocks[snake_name.length]);
         snake_name.length += 1;
         food = true;
+        //food = false;
     }
     //console.log("x:" + snake_name.body[0].x + "   y:" + snake_name.body[0].y + "  z:" + snake_name.body[0].z + "   direction:" + snake_name.direction + "   orientation:" + snake_name.orientation);
     
