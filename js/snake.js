@@ -11,13 +11,13 @@ var pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(0, 300, 200);
 var material = new THREE.MeshBasicMaterial( {color: 0x00ff00});
 
-var Vector_1 = new THREE.Vector3(-1,1,1);
+var Vector_1 = new THREE.Vector3(10,-10,10);
 camera.lookAt(Vector_1);
 scene.add(pointLight);
 
 
-camera.position.x = 10;
-camera.position.y = -10;
+camera.position.x = -10;
+camera.position.y = 10;
 camera.position.z = -10;
 
 var temp_time_fix = 0;
@@ -49,7 +49,7 @@ function render() {
     requestAnimationFrame( render );
     temp_time_fix += 1;
     Input(player);
-    if (temp_time_fix%30 == 0){
+    if (temp_time_fix%10 == 0){
         
     update(player);}
 	renderer.render( scene, camera );
@@ -91,225 +91,11 @@ function update(snake_name){
     snake_name.blocks[snake_name.length-1].position.y = player.body[snake_name.length-1].y;
     snake_name.blocks[snake_name.length-1].position.z = player.body[snake_name.length-1].z;
     scene.add(snake_name.blocks[snake_name.length-1]);
-    //console.log("x:" + snake_name.body[0].x + "   y:" + snake_name.body[0].y + "  z:" + snake_name.body[0].z + "   direction:" + snake_name.direction);
+    console.log("x:" + snake_name.body[0].x + "   y:" + snake_name.body[0].y + "  z:" + snake_name.body[0].z + "   direction:" + snake_name.direction + "   orientation:" + snake_name.orientation);
 }
 
 
 
 
 
-function Input(snake_player) {
-    
-    snake_player.tempDirection = snake_player.direction;
-    snake_player.tempOrientation = snake_player.orientation;
-    
-    document.addEventListener('keypress', function(n) {
-        console.log(n.keyCode);
-        switch (n.keyCode){
-        //case 37:
-        case 97: //left //orientation stays the same
-                
-            switch (snake_player.tempDirection) {
-                case 1:
-                    switch(snake_player.tempOrientation){
-                        case 3:
-                            snake_player.direction = 2;
-                            break;
-                        case -3:
-                            snake_player.direction = -2;
-                            break;
-                        case -2:
-                            snake_player.direction = 3;
-                            break;
-                        case 2:
-                            snake_player.direction = -3;
-                            break;
-                    }//done
-                case -2:
-                    switch(snake_player.tempOrientation){
-                        case 1:
-                            snake_player.direction = -3;
-                            break;
-                        case -1:
-                            snake_player.direction = 3;
-                            break;
-                        case 3:
-                            snake_player.direction = 1;
-                            break;
-                        case -3:
-                            snake_player.direction = -1;
-                            break;
-                    }//done
-                case 3:
-                    switch(snake_player.tempOrientation){
-                        case -2:
-                            snake_player.direction = -1;
-                            break;
-                        case 2:
-                            snake_player.direction = 1;
-                            break;
-                        case 1:
-                            snake_player.direction = -2;
-                            break;
-                        case -1:
-                            snake_player.direction = 2;
-                            break;
-                    }//done
-                case -1:
-                    switch(snake_player.tempOrientation){
-                        case -2:
-                            snake_player.direction = -3;
-                            break;
-                        case 2:
-                            snake_player.direction = 3;
-                            break;
-                        case 3:
-                            snake_player.direction = -2;
-                            break;
-                        case -3:
-                            snake_player.direction = 2;
-                            break;
-                    }//done
-                case 2:
-                    switch(snake_player.tempOrientation){
-                        case 3:
-                            snake_player.direction = -1;
-                            break;
-                        case -3:
-                            snake_player.direction = 1;
-                            break;
-                        case 1:
-                            snake_player.direction = 3;
-                            break;
-                        case -1:
-                            snake_player.direction = -3;
-                            break;
-                    }
-                case -3:
-                    switch(snake_player.tempOrientation){
-                        case 1:
-                            snake_player.direction = 2;
-                            break;
-                        case -1:
-                            snake_player.direction = -2;
-                            break;
-                        case -2:
-                            snake_player.direction = 1;
-                            break;
-                        case 2:
-                            snake_player.direction = -1;
-                            break;
-                    } 
-                    break;
-            }
-            break;
-        //case 38:
-        case 119://up
-            snake_player.direction = -1 * snake_player.tempOrientation;
-            snake_player.orientation = snake_player.tempDirection;
-            break;
-            
-        //case 39:
-        case 100://right
-                switch (snake_player.tempDirection) {
-                case 1:
-                    switch(snake_player.tempOrientation){
-                        case 3:
-                            snake_player.direction = -2;
-                            break;
-                        case -3:
-                            snake_player.direction = 2;
-                            break;
-                        case -2:
-                            snake_player.direction = -3;
-                            break;
-                        case 2:
-                            snake_player.direction = 3;
-                            break;
-                    }//done
-                case -2:
-                    switch(snake_player.tempOrientation){
-                        case 1:
-                            snake_player.direction = 3;
-                            break;
-                        case -1:
-                            snake_player.direction = -3;
-                            break;
-                        case 3:
-                            snake_player.direction = -1;
-                            break;
-                        case -3:
-                            snake_player.direction = 1;
-                            break;
-                    }//done
-                case 3:
-                    switch(snake_player.tempOrientation){
-                        case -2:
-                            snake_player.direction = 1;
-                            break;
-                        case 2:
-                            snake_player.direction = -1;
-                            break;
-                        case 1:
-                            snake_player.direction = 2;
-                            break;
-                        case -1:
-                            snake_player.direction = -2;
-                            break;
-                    }//done
-                case -1:
-                    switch(snake_player.tempOrientation){
-                        case -2:
-                            snake_player.direction = 3;
-                            break;
-                        case 2:
-                            snake_player.direction = -3;
-                            break;
-                        case 3:
-                            snake_player.direction = 2;
-                            break;
-                        case -3:
-                            snake_player.direction = -2;
-                            break;
-                    }//done
-                case 2:
-                    switch(snake_player.tempOrientation){
-                        case 3:
-                            snake_player.direction = 1;
-                            break;
-                        case -3:
-                            snake_player.direction = -1;
-                            break;
-                        case 1:
-                            snake_player.direction = -3;
-                            break;
-                        case -1:
-                            snake_player.direction = 3;
-                            break;
-                    }
-                case -3:
-                    switch(snake_player.tempOrientation){
-                        case 1:
-                            snake_player.direction = -2;
-                            break;
-                        case -1:
-                            snake_player.direction = 2;
-                            break;
-                        case -2:
-                            snake_player.direction = -1;
-                            break;
-                        case 2  :
-                            snake_player.direction = 1;
-                            break;
-                    } 
-                    break;
-            }
-            break;
-        //case 40:
-        case 115: //down
-            snake_player.direction = snake_player.tempOrientation;
-            snake_player.orientation = -1 * snake_player.tempDirection;
-        
-        }
-    });
-}
+
