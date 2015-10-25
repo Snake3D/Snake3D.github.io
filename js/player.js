@@ -16,4 +16,5 @@ function Snake(snake_color, orient, direct, snake_name){
     this.name = snake_name;
     this.color = snake_color;
     this.blocks = [];
+    this.view = null;
 }

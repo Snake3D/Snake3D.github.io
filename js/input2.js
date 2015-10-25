@@ -10,6 +10,27 @@ function Input(snake_player) {
         //case 37:
         //case 97: //left //orientation stays the same
         case 100://right
+            switch (snake_player.tempOrientation){
+                case 1:
+                    Vector_1.applyEuler(0, 0, -(Math.PI)/2, 'XYZ');
+                    break;
+                case 2:
+                    Vector_1.applyEuler(-(Math.PI)/2, 0, 0, 'XYZ');
+                    break;
+                case 3:
+                    Vector_1.applyEuler(0, -(Math.PI)/2, 0, 'XYZ');
+                    break;
+                case -1:
+                    Vector_1.applyEuler(0, 0, (Math.PI)/2, 'XYZ');
+                    break;
+                case -2:
+                    Vector_1.applyEuler((Math.PI)/2, 0, 0, 'XYZ');
+                    break;
+                case -3:
+                    Vector_1.applyEuler(0, (Math.PI)/2, 0, 'XYZ');
+                    break;
+                    
+            }
             switch (snake_player.tempDirection) {
                 case 1:
                     switch(snake_player.tempOrientation){
@@ -119,6 +140,27 @@ function Input(snake_player) {
         //case 39:
         //case 100://right
         case 97: //left //orientation stays the same
+            switch (snake_player.tempOrientation){
+                case 1:
+                    Vector_1.applyEuler(0, 0, (Math.PI)/2, 'XYZ');
+                    break;
+                case 2:
+                    Vector_1.applyEuler((Math.PI)/2, 0, 0, 'XYZ');
+                    break;
+                case 3:
+                    Vector_1.applyEuler(0, (Math.PI)/2, 0, 'XYZ');
+                    break;
+                case -1:
+                    Vector_1.applyEuler(0, 0, -(Math.PI)/2, 'XYZ');
+                    break;
+                case -2:
+                    Vector_1.applyEuler(-(Math.PI)/2, 0, 0, 'XYZ');
+                    break;
+                case -3:
+                    Vector_1.applyEuler(0, -(Math.PI)/2, 0, 'XYZ');
+                    break;
+                    
+            }
                 switch (snake_player.tempDirection) {
                 case 1:
                     switch(snake_player.tempOrientation){

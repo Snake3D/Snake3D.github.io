@@ -8,30 +8,32 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
           
-var geometry = new THREE.BoxGeometry( .9, .9, .9 );
+var geometry = new THREE.BoxGeometry( .8, .8, .8 );
 var pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(0, 300, 200);
 var material = new THREE.MeshBasicMaterial( {color: 0x00ff00});
 var material2 = new THREE.MeshBasicMaterial( {color: 0xff0000});
-
-var Vector_1 = new THREE.Vector3(10,-10,10);
+var scale = 10;
+var a = 1*scale;
+var b = 1*scale;
+var c = -1*scale;//1 1 -1
+var Vector_1 = new THREE.Vector3(a,b,c);
 camera.lookAt(Vector_1);
 scene.add(pointLight);
 
 var size = 100;
-camera.position.x = -10;
-camera.position.y = 10;
-camera.position.z = -10;
+camera.position.x = -a;
+camera.position.y = -b;
+camera.position.z = -c;
 
 var temp_time_fix = 0;
-
-
 
 function apple_drop(a){
     for (var i = 0; i < a; i++){
         apples.push({x:Math.round(size*Math.random()), y:Math.round(size*Math.random()), z:Math.round(size*Math.random())});
     }
 }
+
 
 
 
@@ -120,6 +122,10 @@ function update(snake_name){
         food = true;
     }
     //console.log("x:" + snake_name.body[0].x + "   y:" + snake_name.body[0].y + "  z:" + snake_name.body[0].z + "   direction:" + snake_name.direction + "   orientation:" + snake_name.orientation);
+    
+    camera.position.x = snake_name.body[snake_name.length-1].x - a;
+    camera.position.y = snake_name.body[snake_name.length-1].y - b;
+    camera.position.z = snake_name.body[snake_name.length-1].z - c;
 }
 
 function eat(snake_name){
@@ -137,8 +143,6 @@ function eat(snake_name){
         scene.add(apple_cubes[4]);
     }}
 }
-
-
 
 
 
